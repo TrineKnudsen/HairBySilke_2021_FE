@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { TreatmentsRoutingModule } from './treatments-routing.module';
 import { TreatmentDetailsComponent } from './treatment-details/treatment-details.component';
+import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { TreatmentDetailsComponent } from './treatment-details/treatment-details
   ],
   imports: [
     CommonModule,
-    TreatmentsRoutingModule
+    TreatmentsRoutingModule,
+    HttpClientModule
   ]
 })
 export class TreatmentsModule { }
