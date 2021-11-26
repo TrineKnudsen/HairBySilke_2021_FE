@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {TreatmentsService} from "../shared/treatments.service";
 import {TreatmentDto} from "../shared/treatment.dto";
 import {Observable} from "rxjs";
+import {TreatmentListDto} from "../shared/treatmentListDto";
 
 
 @Component({
@@ -10,16 +11,12 @@ import {Observable} from "rxjs";
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-  treatments: TreatmentDto[] | undefined;
-  treatments$: Observable<TreatmentDto[]> | undefined;
+  treatments$: Observable<TreatmentListDto> | undefined;
 
   constructor(private _treatmentsService: TreatmentsService) { }
 
   ngOnInit(): void {
-    this._treatmentsService.getAll()
-      .subscribe(treatments => {
-        this.treatments = treatments;
-      });
+    this.treatments$ = this._treatmentsService.getAll();
 
   }
 

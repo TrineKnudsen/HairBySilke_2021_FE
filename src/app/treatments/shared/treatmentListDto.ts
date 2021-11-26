@@ -1,6 +1,8 @@
+import {TreatmentDto} from "./treatment.dto";
+
 export interface TreatmentListDto {
 
-  list: TreatmentListDto;
+  list: TreatmentDto[];
 
 
 }

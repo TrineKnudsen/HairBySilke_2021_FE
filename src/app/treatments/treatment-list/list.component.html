@@ -1,7 +1,8 @@
 <h1>Priser</h1>
-<ul *ngIf="treatments$ | async as treatments">
-  <li *ngFor="let treatment of treatments">
-    {{treatment.treatmentName}} | {{treatment.price}}
+<ul class="space"
+    *ngIf="treatments$ | async as treatmentsList">
+  <li *ngFor="let treatment of treatmentsList.list">
+    <span>Treatment: {{treatment.treatmentName}} Name: {{treatment.price}}</span>
   </li>
 </ul>
 
