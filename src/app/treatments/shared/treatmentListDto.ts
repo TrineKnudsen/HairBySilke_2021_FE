@@ -1,6 +1,6 @@
 export interface TreatmentListDto {
 
-  list: TreatmentList[];
+  list: TreatmentListDto;
 
 
 }

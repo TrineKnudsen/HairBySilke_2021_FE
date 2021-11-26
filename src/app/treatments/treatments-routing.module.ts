@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {TreatmentDetailsComponent} from "./treatment-details/treatment-details.component";
+import {ListComponent} from "./treatment-list/list.component";
 
 const routes: Routes = [
-  {path: '',
-  component: TreatmentDetailsComponent}
+  {path: '', component: ListComponent}
 ];
 
 @NgModule({
