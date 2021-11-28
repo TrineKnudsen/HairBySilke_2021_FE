@@ -1,4 +1,6 @@
 export interface TimeSlotDto {
 
-  timeRange : TimeRanges
+  start: string;
+  duration: number;
+  dayOfWeek: string;
 }
