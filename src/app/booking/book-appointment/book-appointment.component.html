@@ -3,8 +3,8 @@
 <mat-form-field appearence="fill">
   <mat-label>Vælg din tid her</mat-label>
   <mat-select *ngIf="timeSlots$ | async as timeslots">
-    <mat-option *ngFor="let timeslot of timeslots.list" [value]="timeslot.duration">
-      {{timeslot.start}}
+    <mat-option *ngFor="let timeslot of timeslots.list" [value]="timeslot">
+      {{timeslot.dayOfWeek}} {{timeslot.start}}
     </mat-option>
   </mat-select>
 </mat-form-field>
