@@ -21,6 +21,10 @@ export class BookAppointmentComponent implements OnInit {
     this.timeSlots$ = this._bookingService.getAll();
     this.treatmentList$ = this._treatmentsService.getAll();
   }
+
+  getTimeSlotbyTreament(): Observable<TimeSlotListDto> {
+    
+  }
 }
 
 
