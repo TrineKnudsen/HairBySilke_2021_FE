@@ -1,5 +1,13 @@
 <h1>Book din frisør tid her!</h1>
 
+<mat-form-field>
+<mat-label>Vælg behandling</mat-label>
+  <mat-select *ngIf="treatmentList$ | async as treatments">
+   <mat-option *ngFor="let treatment of treatments.list" [value]="treatment">
+    {{treatment.treatmentName}} {{treatment.price}}
+   </mat-option>
+  </mat-select>
+</mat-form-field>
 <mat-form-field appearence="fill">
   <mat-label>Vælg din tid her</mat-label>
   <mat-select *ngIf="timeSlots$ | async as timeslots">
