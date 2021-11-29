@@ -2,10 +2,10 @@
 
 <mat-form-field appearence="fill">
   <mat-label>Vælg din tid her</mat-label>
-<mat-select>
-  <mat-option value="html">HTML</mat-option>
-  <mat-option value="css">CSS</mat-option>
-  <mat-option value="js">Javascript</mat-option>
-</mat-select>
+  <mat-select *ngIf="timeSlots$ | async as timeslots">
+    <mat-option *ngFor="let timeslot of timeslots.list" [value]="timeslot.duration">
+      {{timeslot.start}}
+    </mat-option>
+  </mat-select>
 </mat-form-field>
 

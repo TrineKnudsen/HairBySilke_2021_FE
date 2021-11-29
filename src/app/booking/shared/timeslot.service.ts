@@ -8,7 +8,7 @@ import {environment} from "../../../environments/environment";
   providedIn: 'root'
 })
 export class TimeslotService {
-  private timeSlotApi = environment.api + '/bookings';
+  private timeSlotApi = environment.api + '/Booking';
 
   constructor(private _http: HttpClient) { }
 
