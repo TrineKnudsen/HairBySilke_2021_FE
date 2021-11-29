@@ -1,1 +1,11 @@
-<p>book-appointment works!</p>
+<h1>Book din frisør tid her!</h1>
+
+<mat-form-field appearence="fill">
+  <mat-label>Vælg din tid her</mat-label>
+  <mat-select *ngIf="timeSlots$ | async as timeslots">
+    <mat-option *ngFor="let timeslot of timeslots.list" [value]="timeslot">
+      {{timeslot.dayOfWeek}} {{timeslot.start}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
