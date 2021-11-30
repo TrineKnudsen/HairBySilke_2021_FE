@@ -6,6 +6,8 @@ import {TreatmentListDto} from "../../treatments/shared/treatmentListDto";
 import {TreatmentsService} from "../../treatments/shared/treatments.service";
 import {filter, map} from "rxjs/operators";
 import {TreatmentDto} from "../../treatments/shared/treatment.dto";
+import {TimeSlotDto} from "../shared/time-slot.dto";
+import {CustomerDto} from "../../customer/shared/customer-dto";
 
 @Component({
   selector: 'app-book-appointment',
@@ -27,6 +29,10 @@ export class BookAppointmentComponent implements OnInit {
 
   getTimeSlotByTreatment(treatmentDuration: number): void {
     this.timeslotsByTreat$ = this._bookingService.getTimeSlotsByTreatment(treatmentDuration);
+  }
+
+  bookAppointment(timeslot: TimeSlotDto, treatment: TreatmentDto, customer: CustomerDto) {
+
   }
 }
 
