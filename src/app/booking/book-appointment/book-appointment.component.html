@@ -1,19 +1,25 @@
 <h1>Book din frisør tid her!</h1>
 
-<mat-form-field>
-<mat-label>Vælg behandling</mat-label>
-  <mat-select *ngIf="treatmentList$ | async as treatments">
-   <mat-option *ngFor="let treatment of treatments.list" [value]="treatment">
-    {{treatment.treatmentName}} {{treatment.price}}
-   </mat-option>
-  </mat-select>
-</mat-form-field>
-<mat-form-field appearence="fill">
-  <mat-label>Vælg din tid her</mat-label>
-  <mat-select *ngIf="timeSlots$ | async as timeslots">
-    <mat-option *ngFor="let timeslot of timeslots.list" [value]="timeslot">
-      {{timeslot.dayOfWeek}} {{timeslot.start}}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
+<div *ngIf="treatmentList$ | async as treatments">
+  <mat-form-field appearance="fill">
+    <mat-label>Vælg behandling</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let treatment of treatments.list" [value]="treatment" (onSelectionChange)="getTimeSlotByTreatment(treatment.duration)">
+      {{treatment.treatmentName}} {{treatment.duration}}
+     </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<div *ngIf="timeslotsByTreat$ | async as timeslotByTreat else selectTreatment">
+  <mat-form-field appearence="fill">
+    <mat-label>Vælg din tid her</mat-label>
+    <mat-select >
+      <mat-option *ngFor="let timeslot of timeslotByTreat.list" [value]="timeslot">
+        {{timeslot.start}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<ng-template #selectTreatment>..Select somethign</ng-template>
 

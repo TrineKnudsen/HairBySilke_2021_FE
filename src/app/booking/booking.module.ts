@@ -6,6 +6,8 @@ import { BookAppointmentComponent } from './book-appointment/book-appointment.co
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatSelectModule} from "@angular/material/select";
+import {MatFormFieldControl, MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import {MatSelectModule} from "@angular/material/select";
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    MatSelectModule
+    MatInputModule,
+    MatSelectModule,
+    MatFormFieldModule,
   ]
 })
 export class BookingModule { }

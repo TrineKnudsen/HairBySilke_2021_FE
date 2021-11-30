@@ -4,6 +4,8 @@ import {Observable} from "rxjs";
 import {TimeSlotListDto} from "../shared/time-slot-list.dto";
 import {TreatmentListDto} from "../../treatments/shared/treatmentListDto";
 import {TreatmentsService} from "../../treatments/shared/treatments.service";
+import {filter, map} from "rxjs/operators";
+import {TreatmentDto} from "../../treatments/shared/treatment.dto";
 
 @Component({
   selector: 'app-book-appointment',
@@ -12,18 +14,19 @@ import {TreatmentsService} from "../../treatments/shared/treatments.service";
 })
 
 export class BookAppointmentComponent implements OnInit {
+
   timeSlots$: Observable<TimeSlotListDto> | undefined;
   treatmentList$: Observable<TreatmentListDto> | undefined;
+  timeslotsByTreat$: Observable<TimeSlotListDto> | undefined;
 
   constructor(private _bookingService: BookingTimeslotService, private _treatmentsService: TreatmentsService) { }
 
   ngOnInit(): void {
-    this.timeSlots$ = this._bookingService.getAll();
     this.treatmentList$ = this._treatmentsService.getAll();
   }
 
-  getTimeSlotbyTreament(): Observable<TimeSlotListDto> {
-    
+  getTimeSlotByTreatment(treatmentDuration: number): void {
+    this.timeslotsByTreat$ = this._bookingService.getTimeSlotsByTreatment(treatmentDuration);
   }
 }
 
