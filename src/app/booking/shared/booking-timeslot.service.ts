@@ -17,10 +17,6 @@ export class BookingTimeslotService {
 
   constructor(private _http: HttpClient) { }
 
-  httpOptions = {
-    headers: new HttpHeaders({'Content-Type': 'application/json'})
-  };
-
   getAll(): Observable<TimeSlotListDto> {
     return this._http
       .get<TimeSlotListDto>(this.timeSlotApi);
@@ -28,7 +24,7 @@ export class BookingTimeslotService {
 
   getTimeSlotsByTreatment(treatmentDuration: number): Observable<TimeSlotListDto> {
     return this._http
-      .get<TimeSlotListDto>(this.timeSlotApi + "/" + treatmentDuration, this.httpOptions);
+      .get<TimeSlotListDto>(this.timeSlotApi + "/" + treatmentDuration);
   }
 
   createBooking(appointmentDto: AppointmentDto): Observable<AppointmentDto> {
