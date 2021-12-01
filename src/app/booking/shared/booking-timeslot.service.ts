@@ -10,16 +10,17 @@ import {TreatmentDto} from "../../treatments/shared/treatment.dto";
 })
 export class BookingTimeslotService {
   private bookingsApi = environment.api + '/Booking';
+  private timeSlotApi = environment.api + '/TimeSlot';
 
   constructor(private _http: HttpClient) { }
 
   getAll(): Observable<TimeSlotListDto> {
     return this._http
-      .get<TimeSlotListDto>(this.bookingsApi);
+      .get<TimeSlotListDto>(this.timeSlotApi);
   }
 
   getTimeSlotsByTreatment(treatmentDuration: number): Observable<TimeSlotListDto> {
     return this._http
-      .get<TimeSlotListDto>(this.bookingsApi + "/" + treatmentDuration);
+      .get<TimeSlotListDto>(this.timeSlotApi + "/" + treatmentDuration);
   }
 }
