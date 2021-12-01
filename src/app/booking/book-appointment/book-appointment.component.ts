@@ -34,7 +34,7 @@ export class BookAppointmentComponent implements OnInit {
     this.timeslotsByTreat$ = this._bookingService.getTimeSlotsByTreatment(treatmentDuration);
   }
 
-  bookAppointment(treatmentName: string, startTime: string): void {
+  bookAppointment(treatmentName: string, startTime: string) {
     this._bookingService.createBooking({treatmentName:treatmentName, start:startTime} as AppointmentDto)
       .subscribe();
   }
