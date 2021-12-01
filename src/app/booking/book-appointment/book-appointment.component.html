@@ -3,7 +3,7 @@
 <div *ngIf="treatmentList$ | async as treatments">
   <mat-form-field appearance="fill">
     <mat-label>Vælg behandling</mat-label>
-    <mat-select [(ngModel)]="selectedTreatment" name="treatment">
+    <mat-select [(ngModel)]="selectedTreatment">
       <mat-option *ngFor="let treatment of treatments.list" [value]="treatment.treatmentName" (onSelectionChange)="getTimeSlotByTreatment(treatment.duration)">
       {{treatment.treatmentName}} {{treatment.duration}}
      </mat-option>
@@ -14,7 +14,7 @@
 <div *ngIf="timeslotsByTreat$ | async as timeslotByTreat else selectTreatment">
   <mat-form-field appearence="fill">
     <mat-label>Vælg din tid her</mat-label>
-    <mat-select [(ngModel)]="selectedTimeSlot" name="timeSlot">
+    <mat-select [(ngModel)]="selectedTimeSlot">
       <mat-option *ngFor="let timeslot of timeslotByTreat.list" [value]="timeslot.start">
         {{timeslot.start}}
       </mat-option>

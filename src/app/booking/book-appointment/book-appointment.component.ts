@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {BookingTimeslotService} from "../shared/booking-timeslot.service";
 import {Observable} from "rxjs";
 import {TimeSlotListDto} from "../shared/time-slot-list.dto";
@@ -21,8 +21,8 @@ export class BookAppointmentComponent implements OnInit {
   timeSlots$: Observable<TimeSlotListDto> | undefined;
   treatmentList$: Observable<TreatmentListDto> | undefined;
   timeslotsByTreat$: Observable<TimeSlotListDto> | undefined;
-  selectedTimeSlot: string | any;
   selectedTreatment: string | any;
+  selectedTimeSlot: string | any;
 
   constructor(private _bookingService: BookingTimeslotService, private _treatmentsService: TreatmentsService) { }
 
@@ -34,12 +34,9 @@ export class BookAppointmentComponent implements OnInit {
     this.timeslotsByTreat$ = this._bookingService.getTimeSlotsByTreatment(treatmentDuration);
   }
 
-  bookAppointment(treatmentName: string, startTime: string): AppointmentDto {
-    let newAppointment: AppointmentDto ={
-      treatmentName: treatmentName,
-      start: startTime
-    }
-    return newAppointment;
+  bookAppointment(treatmentName: string, startTime: string): void {
+    this._bookingService.createBooking({treatmentName:treatmentName, start:startTime} as AppointmentDto)
+      .subscribe();
   }
 }
 
