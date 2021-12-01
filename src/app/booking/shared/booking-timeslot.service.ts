@@ -4,6 +4,8 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {TimeSlotListDto} from "./time-slot-list.dto";
 import {TreatmentDto} from "../../treatments/shared/treatment.dto";
+import {TimeSlotDto} from "./time-slot.dto";
+import {AppointmentDto} from "./appointment.dto";
 
 @Injectable({
   providedIn: 'root'
@@ -22,5 +24,10 @@ export class BookingTimeslotService {
   getTimeSlotsByTreatment(treatmentDuration: number): Observable<TimeSlotListDto> {
     return this._http
       .get<TimeSlotListDto>(this.timeSlotApi + "/" + treatmentDuration);
+  }
+
+  createBooking(appointmentDto: AppointmentDto): Observable<AppointmentDto> {
+    return this._http
+      .post<AppointmentDto>(this.bookingsApi, appointmentDto);
   }
 }

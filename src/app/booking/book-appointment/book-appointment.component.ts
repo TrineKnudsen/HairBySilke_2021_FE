@@ -8,6 +8,7 @@ import {filter, map} from "rxjs/operators";
 import {TreatmentDto} from "../../treatments/shared/treatment.dto";
 import {TimeSlotDto} from "../shared/time-slot.dto";
 import {CustomerDto} from "../../customer/shared/customer-dto";
+import {AppointmentDto} from "../shared/appointment.dto";
 
 @Component({
   selector: 'app-book-appointment',
@@ -20,6 +21,8 @@ export class BookAppointmentComponent implements OnInit {
   timeSlots$: Observable<TimeSlotListDto> | undefined;
   treatmentList$: Observable<TreatmentListDto> | undefined;
   timeslotsByTreat$: Observable<TimeSlotListDto> | undefined;
+  selectedTimeSlot: string | any;
+  selectedTreatment: string | any;
 
   constructor(private _bookingService: BookingTimeslotService, private _treatmentsService: TreatmentsService) { }
 
@@ -31,8 +34,12 @@ export class BookAppointmentComponent implements OnInit {
     this.timeslotsByTreat$ = this._bookingService.getTimeSlotsByTreatment(treatmentDuration);
   }
 
-  bookAppointment(timeslot: TimeSlotDto, treatment: TreatmentDto, customer: CustomerDto) {
-
+  bookAppointment(treatmentName: string, startTime: string): AppointmentDto {
+    let newAppointment: AppointmentDto ={
+      treatmentName: treatmentName,
+      start: startTime
+    }
+    return newAppointment;
   }
 }
 
