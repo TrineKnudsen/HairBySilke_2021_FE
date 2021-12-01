@@ -23,6 +23,9 @@ export class BookAppointmentComponent implements OnInit {
   timeslotsByTreat$: Observable<TimeSlotListDto> | undefined;
   selectedTreatment: string | any;
   selectedTimeSlot: string | any;
+  custName: string | any;
+  custEmail: string | any;
+  custNumber: string | any;
 
   constructor(private _bookingService: BookingTimeslotService, private _treatmentsService: TreatmentsService) { }
 
@@ -34,8 +37,14 @@ export class BookAppointmentComponent implements OnInit {
     this.timeslotsByTreat$ = this._bookingService.getTimeSlotsByTreatment(treatmentDuration);
   }
 
-  bookAppointment(treatmentName: string, startTime: string) {
-    this._bookingService.createBooking({treatmentName:treatmentName, start:startTime} as AppointmentDto).subscribe();
+  bookAppointment(treatmentName: string, startTime: string, customerName: string, phoneNumber: string, email: string) {
+    let customer: CustomerDto = {
+      name: customerName,
+      phoneNumber: phoneNumber,
+      email: email
+    };
+
+    this._bookingService.createBooking({treatmentName:treatmentName, start:startTime, customer} as AppointmentDto).subscribe();
   }
 }
 

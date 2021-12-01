@@ -1,5 +1,17 @@
 <h1>Book din frisør tid her!</h1>
 
+<div>
+  <label>Skriv dine kontaktoplysninger</label>
+  <label for="cust-name">Fulde nav:</label>
+  <input id="cust-name" [(ngModel)]="custName">
+
+  <label for="cust-number">Telefon nummer:</label>
+  <input id="cust-number" [(ngModel)]="custNumber">
+
+  <label for="cust-mail">Email:</label>
+  <input id="cust-mail" [(ngModel)]="custEmail">
+</div>
+
 <div *ngIf="treatmentList$ | async as treatments">
   <mat-form-field appearance="fill">
     <mat-label>Vælg behandling</mat-label>
@@ -22,7 +34,7 @@
   </mat-form-field>
 </div>
 
-<button (click)="bookAppointment(selectedTreatment, selectedTimeSlot)" >Book tid</button>
+<button (click)="bookAppointment(selectedTreatment, selectedTimeSlot, custName,custNumber, custEmail )" >Book tid</button>
 
 <ng-template #selectTreatment>..Vælg en behandling for at kunne se ledige tider..</ng-template>
 
