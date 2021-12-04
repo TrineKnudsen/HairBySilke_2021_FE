@@ -9,7 +9,7 @@ import {TreatmentListDto} from "./treatmentListDto";
   providedIn: 'root'
 })
 export class TreatmentsService {
-  private treatmentsApi = environment.api + '/treatments';
+  private treatmentsApi = environment.api + '/treatment';
 
 
   constructor(private _http: HttpClient) {}

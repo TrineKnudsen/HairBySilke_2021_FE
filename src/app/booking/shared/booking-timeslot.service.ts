@@ -15,7 +15,8 @@ export class BookingTimeslotService {
   private timeSlotApi = environment.api + '/TimeSlot';
 
 
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient) {
+  }
 
   getAll(): Observable<TimeSlotListDto> {
     return this._http
