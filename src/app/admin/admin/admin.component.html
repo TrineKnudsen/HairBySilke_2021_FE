@@ -1,0 +1,10 @@
+<h1>Bookinger: </h1>
+
+<div *ngIf="appointmentList$ | async as appointments">
+
+  <li *ngFor="let appointment of appointments.list">
+  <span>Dato: {{appointment.start}} Behandling: {{appointment.treatmentName}}
+    <br>Kunde:<br>{{appointment.customer.name}} tlf nummer: {{appointment.customer.phoneNumber}}
+  </span>
+  </li>
+</div>

@@ -6,14 +6,19 @@ import { AppComponent } from './app.component';
 import {HttpClientModule} from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectModule} from "@angular/material/select";
+
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import { CustomerComponent } from './customer/customer.component';
+
+import { AdminComponent } from './admin/admin/admin.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
     AppComponent,
     CustomerComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,
@@ -23,10 +28,10 @@ import { CustomerComponent } from './customer/customer.component';
     MatSelectModule,
     MatFormFieldModule,
     MatInputModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule{
-
 }
