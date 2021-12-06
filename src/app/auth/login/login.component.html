@@ -1,3 +1,5 @@
+<h1>Login</h1>
+
 <form [formGroup]="loginForm" (ngSubmit)="login()" style="margin-top: 10px">
 
   <label for="username">Email: </label>
@@ -26,3 +28,4 @@
           class="btn btn-danger"
           [disabled]="!loginForm.valid">Login</button>
 </form>
+<div *ngIf="err" class="error">{{err}}</div>
