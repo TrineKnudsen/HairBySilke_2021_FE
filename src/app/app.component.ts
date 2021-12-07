@@ -11,9 +11,10 @@ import {take} from "rxjs/operators";
 export class AppComponent {
   jwt: string | null | undefined;
 
-  constructor(private _auth: AuthService, private _router: Router) {
-    _auth.isLoggedIn$.subscribe(jwt => {
-      this.jwt = jwt;
+  constructor(private _auth: AuthService,
+              private _router: Router) {
+              _auth.isLoggedIn$.subscribe(jwt => {
+              this.jwt = jwt;
     })
   }
   title = 'Hair By Silke';
@@ -21,7 +22,7 @@ export class AppComponent {
   logout() {
     this._auth.logout()
       .subscribe(loggedOut => {
-        this._router.navigateByUrl('about')
+        this._router.navigateByUrl('auth/login')
       });
   }
 }

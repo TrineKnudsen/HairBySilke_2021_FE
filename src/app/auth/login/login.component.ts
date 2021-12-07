@@ -43,7 +43,6 @@ export class LoginComponent implements OnInit {
         } else if (token && token.message) {
           this.err = token.message
         }
-        //console.log('Token: ', token);
       });
   }
 }

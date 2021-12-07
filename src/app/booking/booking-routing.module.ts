@@ -5,7 +5,7 @@ import {AuthGuard} from "../auth/guards/auth.guard";
 
 const routes: Routes = [
   {path: '',
-  component: BookAppointmentComponent, canActivate: [AuthGuard]}
+  component: BookAppointmentComponent}
 ];
 
 @NgModule({
