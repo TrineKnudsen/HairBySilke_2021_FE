@@ -13,6 +13,9 @@ import { CustomerComponent } from './customer/customer.component';
 
 import { AdminComponent } from './admin/admin/admin.component';
 import {FormsModule} from "@angular/forms";
+import {MatCardModule} from "@angular/material/card";
+import {MatExpansionModule} from "@angular/material/expansion";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [
@@ -20,16 +23,19 @@ import {FormsModule} from "@angular/forms";
     CustomerComponent,
     AdminComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MatSelectModule,
-    MatFormFieldModule,
-    MatInputModule,
-    FormsModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MatSelectModule,
+        MatFormFieldModule,
+        MatInputModule,
+        FormsModule,
+        MatCardModule,
+        MatExpansionModule,
+        MatButtonModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

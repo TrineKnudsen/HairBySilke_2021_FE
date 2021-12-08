@@ -3,6 +3,7 @@ import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {AppointmentListDto} from "../../booking/shared/appointment-list.dto";
+import {AppointmentDto} from "../../booking/shared/appointment.dto";
 
 @Injectable({
   providedIn: 'root'

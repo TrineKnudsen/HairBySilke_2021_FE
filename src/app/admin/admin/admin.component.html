@@ -3,8 +3,52 @@
 <div *ngIf="appointmentList$ | async as appointments">
 
   <li *ngFor="let appointment of appointments.list">
-  <span>Dato: {{appointment.start}} Behandling: {{appointment.treatmentName}}
-    <br>Kunde:<br>{{appointment.customer.name}} tlf nummer: {{appointment.customer.phoneNumber}}
-  </span>
+    <mat-accordion>
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+
+          <mat-panel-title>
+            Kunde: {{appointment.customer.name}}
+         </mat-panel-title>
+        </mat-expansion-panel-header>
+          <mat-form-field appearance="fill">
+            <mat-label>Tlf. nr.</mat-label>
+            <input matInput value="{{appointment.customer.phoneNumber}}">
+          </mat-form-field>
+          <br>
+        <div *ngIf="treatmentList$ | async as treatments">
+          <mat-form-field appearance="fill">
+            <mat-label>{{appointment.treatmentName}}</mat-label>
+            <mat-select [(ngModel)]="selectedTreatment">
+              <mat-option *ngFor="let treatment of treatments.list" [value]="appointment.treatmentName" (onSelectionChange)="getTimeSlotByTreatment(treatment.duration)">
+                {{treatment.treatmentName}} {{treatment.duration}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+          <br>
+        Dato: {{appointment.start}}
+        <br>
+<!--        <div *ngIf="timeslotsByTreat$ | async as timeslotByTreat">-->
+<!--          <mat-form-field appearence="fill">-->
+<!--            <mat-label>Vælg din tid her</mat-label>-->
+<!--            <mat-select [(ngModel)]="selectedTimeSlot">-->
+<!--              <mat-option *ngFor="let timeslot of timeslotByTreat.list" [value]="timeslot.start">-->
+<!--                {{timeslot.start}}-->
+<!--              </mat-option>-->
+<!--            </mat-select>-->
+<!--          </mat-form-field>-->
+<!--        </div>-->
+      <mat-action-row>
+        <button mat-button (click)="DeleteAppointment()">Slet booking</button>
+      </mat-action-row>
+      </mat-expansion-panel>
+    </mat-accordion>
   </li>
 </div>
+
+
+<!--<span>Dato: {{appointment.start}} Behandling: {{appointment.treatmentName}}-->
+<!--  <br>Kunde:<br>{{appointment.customer.name}} tlf nummer: {{appointment.customer.phoneNumber}}-->
+<!--  </span>-->
+<!--<button (click)="UpdateAppointment(appointment)" >Updatér booking </button>-->
