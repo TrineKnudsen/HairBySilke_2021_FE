@@ -39,7 +39,7 @@ export class AdminComponent implements OnInit {
     this.appointmentListByDay$ = this._adminService.getByWeekDay(dayOfWeek);
   }
 
-  DeleteAppointment() {
-    
+  deleteAppointment(appointment: AppointmentDto) {
+
   }
 }

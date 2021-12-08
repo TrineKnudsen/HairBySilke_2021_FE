@@ -9,6 +9,8 @@
 
           <mat-panel-title>
             Kunde: {{appointment.customer.name}}
+            <br>
+            Dato: {{appointment.start}}
          </mat-panel-title>
         </mat-expansion-panel-header>
           <mat-form-field appearance="fill">
@@ -26,8 +28,6 @@
             </mat-select>
           </mat-form-field>
         </div>
-          <br>
-        Dato: {{appointment.start}}
         <br>
 <!--        <div *ngIf="timeslotsByTreat$ | async as timeslotByTreat">-->
 <!--          <mat-form-field appearence="fill">-->
@@ -40,7 +40,7 @@
 <!--          </mat-form-field>-->
 <!--        </div>-->
       <mat-action-row>
-        <button mat-button (click)="DeleteAppointment()">Slet booking</button>
+<!--        <button mat-button (click)="deleteAppointment()">Slet booking</button>-->
       </mat-action-row>
       </mat-expansion-panel>
     </mat-accordion>
