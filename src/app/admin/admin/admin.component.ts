@@ -8,6 +8,7 @@ import {TimeSlotListDto} from "../../booking/shared/time-slot-list.dto";
 import {BookingTimeslotService} from "../../booking/shared/booking-timeslot.service";
 import {TreatmentsService} from "../../treatments/shared/treatments.service";
 import {ifStmt} from "@angular/compiler/src/output/output_ast";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-admin',
@@ -23,10 +24,12 @@ export class AdminComponent implements OnInit {
   selectedTimeSlot: string | any;
   weekday: string | any;
   panelOpenState = false;
+  selectedAppointment$: number | any;
 
-  constructor(private _adminService: AdminService, private _bookingService: BookingTimeslotService, private _treatmentsService: TreatmentsService) { }
+  constructor(private _route: ActivatedRoute, private _adminService: AdminService, private _bookingService: BookingTimeslotService, private _treatmentsService: TreatmentsService) { }
 
   ngOnInit(): void {
+    this.selectedAppointment$ = Number(this._route.snapshot.paramMap.get('id'));
     this.appointmentList$ = this._adminService.getAll();
     this.treatmentList$ = this._treatmentsService.getAll();
   }
@@ -37,6 +40,10 @@ export class AdminComponent implements OnInit {
 
   getAppointmentsByWeekDay(dayOfWeek: string){
     this.appointmentListByDay$ = this._adminService.getByWeekDay(dayOfWeek);
+  }
+
+  getAppointment(id: number): Observable<AppointmentDto> {
+    return this._adminService.getAppointment(id);
   }
 
   deleteAppointment(appointment: AppointmentDto) {

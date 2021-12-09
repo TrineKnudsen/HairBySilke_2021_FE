@@ -16,6 +16,7 @@ import {FormsModule} from "@angular/forms";
 import {MatCardModule} from "@angular/material/card";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatButtonModule} from "@angular/material/button";
+import {MatListModule} from "@angular/material/list";
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import {MatButtonModule} from "@angular/material/button";
         MatCardModule,
         MatExpansionModule,
         MatButtonModule,
+        MatListModule,
     ],
   providers: [],
   bootstrap: [AppComponent]

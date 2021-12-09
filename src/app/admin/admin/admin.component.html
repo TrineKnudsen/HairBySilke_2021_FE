@@ -2,16 +2,17 @@
 
 <div *ngIf="appointmentList$ | async as appointments">
 
-  <li *ngFor="let appointment of appointments.list">
+  <li *ngFor="let appointment of appointments.list" [value]="appointment">
     <mat-accordion>
-      <mat-expansion-panel hideToggle>
+      <mat-expansion-panel>
         <mat-expansion-panel-header>
-
           <mat-panel-title>
             Kunde: {{appointment.customer.name}}
             <br>
             Dato: {{appointment.start}}
-         </mat-panel-title>
+            <mat-list-option *ngFor="let appointment of appointments.list" [value]="appointment.id" (selectedChange)="getAppointment(appointment.id)">
+            </mat-list-option>
+          </mat-panel-title>
         </mat-expansion-panel-header>
           <mat-form-field appearance="fill">
             <mat-label>Tlf. nr.</mat-label>
