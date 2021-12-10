@@ -1,55 +1,42 @@
 <h1>Bookinger: </h1>
 
 <div *ngIf="appointmentList$ | async as appointments">
-
-  <li *ngFor="let appointment of appointments.list" [value]="appointment">
+  <li *ngFor="let appointment of appointments.list" [value]="appointment" #appointment>
     <mat-accordion>
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>
             Kunde: {{appointment.customer.name}}
             <br>
-            Dato: {{appointment.start}}
-            <mat-list-option *ngFor="let appointment of appointments.list" [value]="appointment.id" (selectedChange)="getAppointment(appointment.id)">
-            </mat-list-option>
+            Booking: {{appointment.start}}
           </mat-panel-title>
         </mat-expansion-panel-header>
-          <mat-form-field appearance="fill">
-            <mat-label>Tlf. nr.</mat-label>
-            <input matInput value="{{appointment.customer.phoneNumber}}">
-          </mat-form-field>
-          <br>
         <div *ngIf="treatmentList$ | async as treatments">
           <mat-form-field appearance="fill">
-            <mat-label>{{appointment.treatmentName}}</mat-label>
+            <mat-label>Vælg ny behandling</mat-label>
             <mat-select [(ngModel)]="selectedTreatment">
-              <mat-option *ngFor="let treatment of treatments.list" [value]="appointment.treatmentName" (onSelectionChange)="getTimeSlotByTreatment(treatment.duration)">
+              <mat-option *ngFor="let treatment of treatments.list" [value]="treatment.treatmentName"
+                          (onSelectionChange)="getTimeSlotByTreatment(treatment.duration)">
                 {{treatment.treatmentName}} {{treatment.duration}}
               </mat-option>
             </mat-select>
           </mat-form-field>
         </div>
-        <br>
-<!--        <div *ngIf="timeslotsByTreat$ | async as timeslotByTreat">-->
-<!--          <mat-form-field appearence="fill">-->
-<!--            <mat-label>Vælg din tid her</mat-label>-->
-<!--            <mat-select [(ngModel)]="selectedTimeSlot">-->
-<!--              <mat-option *ngFor="let timeslot of timeslotByTreat.list" [value]="timeslot.start">-->
-<!--                {{timeslot.start}}-->
-<!--              </mat-option>-->
-<!--            </mat-select>-->
-<!--          </mat-form-field>-->
-<!--        </div>-->
-      <mat-action-row>
-<!--        <button mat-button (click)="deleteAppointment()">Slet booking</button>-->
-      </mat-action-row>
+
+        <div *ngIf="timeslotsByTreat$ | async as timeslotByTreat">
+          <mat-form-field appearence="fill">
+            <mat-label>Vælg ny tid her</mat-label>
+            <mat-select [(ngModel)]="selectedTimeSlot">
+              <mat-option *ngFor="let timeslot of timeslotByTreat.list" [value]="timeslot.start">
+                {{timeslot.start}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <button mat-button (click)="updateAppointment(appointment.id, selectedTreatment, selectedTimeSlot)">Updater
+          booking
+        </button>
       </mat-expansion-panel>
     </mat-accordion>
   </li>
 </div>
-
-
-<!--<span>Dato: {{appointment.start}} Behandling: {{appointment.treatmentName}}-->
-<!--  <br>Kunde:<br>{{appointment.customer.name}} tlf nummer: {{appointment.customer.phoneNumber}}-->
-<!--  </span>-->
-<!--<button (click)="UpdateAppointment(appointment)" >Updatér booking </button>-->

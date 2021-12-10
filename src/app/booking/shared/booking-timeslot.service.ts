@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {environment} from "../../../environments/environment";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {TimeSlotListDto} from "./time-slot-list.dto";
 import {TreatmentDto} from "../../treatments/shared/treatment.dto";
@@ -31,5 +31,10 @@ export class BookingTimeslotService {
   createBooking(appointmentDto: AppointmentDto): Observable<AppointmentDto> {
     return this._http
       .post<AppointmentDto>(this.bookingsApi, appointmentDto);
+  }
+
+  updateAppointment(id: number, updatedAppointment: AppointmentDto): Observable<AppointmentDto> {
+    return this._http
+      .put<AppointmentDto>(this.bookingsApi + id, updatedAppointment)
   }
 }

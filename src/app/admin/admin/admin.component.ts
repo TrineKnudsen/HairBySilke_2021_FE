@@ -9,6 +9,7 @@ import {BookingTimeslotService} from "../../booking/shared/booking-timeslot.serv
 import {TreatmentsService} from "../../treatments/shared/treatments.service";
 import {ifStmt} from "@angular/compiler/src/output/output_ast";
 import {ActivatedRoute} from "@angular/router";
+import {CustomerDto} from "../../customer/shared/customer-dto";
 
 @Component({
   selector: 'app-admin',
@@ -22,14 +23,12 @@ export class AdminComponent implements OnInit {
   timeslotsByTreat$: Observable<TimeSlotListDto> | undefined;
   selectedTreatment: string | any;
   selectedTimeSlot: string | any;
-  weekday: string | any;
-  panelOpenState = false;
-  selectedAppointment$: number | any;
+  selectedAppointment: number | any;
 
   constructor(private _route: ActivatedRoute, private _adminService: AdminService, private _bookingService: BookingTimeslotService, private _treatmentsService: TreatmentsService) { }
 
   ngOnInit(): void {
-    this.selectedAppointment$ = Number(this._route.snapshot.paramMap.get('id'));
+    this.selectedAppointment = Number(this._route.snapshot.paramMap.get('id'));
     this.appointmentList$ = this._adminService.getAll();
     this.treatmentList$ = this._treatmentsService.getAll();
   }
@@ -48,5 +47,9 @@ export class AdminComponent implements OnInit {
 
   deleteAppointment(appointment: AppointmentDto) {
 
+  }
+
+  updateAppointment(id: number, newTreatmentName: string, newTimeSlot: string): Observable<AppointmentDto> {
+    return this._bookingService.updateAppointment(id, {treatmentName:newTreatmentName, start:newTimeSlot} as AppointmentDto)
   }
 }
