@@ -18,17 +18,14 @@ import {CustomerDto} from "../../customer/shared/customer-dto";
 })
 export class AdminComponent implements OnInit {
   appointmentList$: Observable<AppointmentListDto> | undefined;
-  appointmentListByDay$: Observable<AppointmentListDto> | undefined;
   treatmentList$: Observable<TreatmentListDto> | undefined;
   timeslotsByTreat$: Observable<TimeSlotListDto> | undefined;
   selectedTreatment: string | any;
   selectedTimeSlot: string | any;
-  selectedAppointment: number | any;
 
   constructor(private _route: ActivatedRoute, private _adminService: AdminService, private _bookingService: BookingTimeslotService, private _treatmentsService: TreatmentsService) { }
 
   ngOnInit(): void {
-    this.selectedAppointment = Number(this._route.snapshot.paramMap.get('id'));
     this.appointmentList$ = this._adminService.getAll();
     this.treatmentList$ = this._treatmentsService.getAll();
   }
@@ -37,19 +34,18 @@ export class AdminComponent implements OnInit {
     this.timeslotsByTreat$ = this._bookingService.getTimeSlotsByTreatment(treatmentDuration);
   }
 
-  getAppointmentsByWeekDay(dayOfWeek: string){
-    this.appointmentListByDay$ = this._adminService.getByWeekDay(dayOfWeek);
+  deleteAppointment(appointmentId: number) {
+    this._bookingService.deleteAppointment(appointmentId).subscribe();
+    this.refresh();
   }
 
-  getAppointment(id: number): Observable<AppointmentDto> {
-    return this._adminService.getAppointment(id);
+  updateAppointment(id: number, newTreatmentName: string, newTimeSlot: string) {
+    this._bookingService.updateAppointment(id, {treatmentName:newTreatmentName, start:newTimeSlot} as AppointmentDto)
+      .subscribe();
+    this.refresh();
   }
 
-  deleteAppointment(appointment: AppointmentDto) {
-
-  }
-
-  updateAppointment(id: number, newTreatmentName: string, newTimeSlot: string): Observable<AppointmentDto> {
-    return this._bookingService.updateAppointment(id, {treatmentName:newTreatmentName, start:newTimeSlot} as AppointmentDto)
+  refresh(): void {
+    window.location.reload();
   }
 }

@@ -33,9 +33,10 @@
             </mat-select>
           </mat-form-field>
         </div>
-        <button mat-button (click)="updateAppointment(appointment.id, selectedTreatment, selectedTimeSlot)">Updater
-          booking
+        <button mat-button (click)="updateAppointment(appointment.id, selectedTreatment, selectedTimeSlot)">Opdater
+          aftale
         </button>
+        <button mat-button (click)="deleteAppointment(appointment.id)">Aflys aftale</button>
       </mat-expansion-panel>
     </mat-accordion>
   </li>

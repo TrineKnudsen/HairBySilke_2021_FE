@@ -46,4 +46,6 @@ export class BookAppointmentComponent implements OnInit {
 
     this._bookingService.createBooking({treatmentName:treatmentName, start:startTime, customer} as AppointmentDto).subscribe();
   }
+
+
 }

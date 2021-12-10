@@ -35,6 +35,11 @@ export class BookingTimeslotService {
 
   updateAppointment(id: number, updatedAppointment: AppointmentDto): Observable<AppointmentDto> {
     return this._http
-      .put<AppointmentDto>(this.bookingsApi + id, updatedAppointment)
+      .put<AppointmentDto>(this.bookingsApi + '/' + id, updatedAppointment)
+  }
+
+  deleteAppointment(id: number): Observable<AppointmentDto>{
+    return this._http
+      .delete<AppointmentDto>(this.bookingsApi + '/' + id)
   }
 }
