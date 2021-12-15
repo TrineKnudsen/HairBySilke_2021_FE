@@ -8,7 +8,7 @@
           <mat-panel-title>
             Kunde: {{appointment.customer.name}}
             <br>
-            Behandling: {{appointment.treatmentName}} | Tidspunt: {{appointment.start}}
+            Behandling: {{appointment.treatmentName}} | Tidspunkt: {{appointment.start}}
           </mat-panel-title>
         </mat-expansion-panel-header>
         <div *ngIf="treatmentList$ | async as treatments">
