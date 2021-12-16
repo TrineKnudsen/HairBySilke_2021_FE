@@ -17,7 +17,6 @@ export class ListComponent implements OnInit {
 
   ngOnInit(): void {
     this.treatments$ = this._treatmentsService.getAll();
-
   }
 
 }

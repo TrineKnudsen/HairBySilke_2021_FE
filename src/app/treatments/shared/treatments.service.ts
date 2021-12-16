@@ -11,7 +11,6 @@ import {TreatmentListDto} from "./treatmentListDto";
 export class TreatmentsService {
   private treatmentsApi = environment.api + '/treatment';
 
-
   constructor(private _http: HttpClient) {}
 
   getAll(): Observable<TreatmentListDto> {

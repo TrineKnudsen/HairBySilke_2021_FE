@@ -5,6 +5,7 @@ import { TreatmentsRoutingModule } from './treatments-routing.module';
 import {HttpClientModule} from "@angular/common/http";
 import {ListComponent} from "./treatment-list/list.component";
 import {ReactiveFormsModule} from "@angular/forms";
+import {MatListModule} from "@angular/material/list";
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import {ReactiveFormsModule} from "@angular/forms";
     CommonModule,
     TreatmentsRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatListModule
   ]
 })
 export class TreatmentsModule { }
