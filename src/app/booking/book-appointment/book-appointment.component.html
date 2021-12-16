@@ -17,7 +17,7 @@
     <mat-label>Vælg behandling</mat-label>
     <mat-select [(ngModel)]="selectedTreatment">
       <mat-option *ngFor="let treatment of treatments.list" [value]="treatment.treatmentName" (onSelectionChange)="getTimeSlotByTreatment(treatment.duration)">
-      {{treatment.treatmentName}} {{treatment.duration}}
+      {{treatment.treatmentName}} | {{treatment.price}}kr
      </mat-option>
     </mat-select>
   </mat-form-field>
