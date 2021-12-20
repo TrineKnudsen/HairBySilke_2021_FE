@@ -9,12 +9,11 @@ import {TreatmentListDto} from "./treatmentListDto";
   providedIn: 'root'
 })
 export class TreatmentsService {
-  private treatmentsApi = environment.api + '/treatment';
 
   constructor(private _http: HttpClient) {}
 
   getAll(): Observable<TreatmentListDto> {
     return this._http
-      .get<TreatmentListDto>(this.treatmentsApi);
+      .get<TreatmentListDto>(environment.api + '/treatment');
   }
 }
